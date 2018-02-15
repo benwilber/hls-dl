@@ -11,7 +11,7 @@ CHUNK_SIZE = 10240
 
 
 def fetch_segment(url, output_dir):
-    """ Fetch a single MPEG-TS segment to `output_dir`
+    """ Fetch a single MPEG-TS segment to `output_dir`.
     """
     print("\t", os.path.basename(url))
     r = requests.get(url, stream=True)
@@ -24,7 +24,7 @@ def fetch_segment(url, output_dir):
 
 
 def fetch_playlist(url, output_dir):
-    """ Fetch and M3U8 playlist recursively and store the full
+    """ Fetch an M3U8 playlist recursively and store the full
         contents in `output_dir`.
     """
     print("Fetching", os.path.basename(url))
