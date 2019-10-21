@@ -4,4 +4,4 @@ idna==2.6
 iso8601==0.1.12
 m3u8==0.3.5
 requests==2.18.4
-urllib3==1.22
+urllib3==1.24.2
