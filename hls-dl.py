@@ -41,6 +41,7 @@ def fetch_playlist(url, output_dir, start_pdt=None):
     if p.is_variant:
         for sp in p.playlists:
             fetch_playlist(sp.absolute_uri, output_dir, start_pdt=start_pdt)
+            m.add_playlist(sp)
     else:
         current_pdt = start_pdt
         for s in p.segments:
@@ -48,7 +49,7 @@ def fetch_playlist(url, output_dir, start_pdt=None):
                 s.program_date_time = current_pdt
                 current_pdt = current_pdt + timedelta(seconds=s.duration)
 
-            # fetch_segment(s.absolute_uri, output_dir)
+            fetch_segment(s.absolute_uri, output_dir)
             m.add_segment(s)
 
     local_path = os.path.join(output_dir, os.path.basename(url))
