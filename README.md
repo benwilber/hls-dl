@@ -11,8 +11,8 @@ $ pip install -r requirements.txt
 
 ## Usage
 ```shell
-$ hls-dl.py --help
-usage: hls-dl.py [-h] [-o OUTPUT_DIR] url
+$ python3 hls-dl.py --help
+usage: hls-dl.py [-h] [-o OUTPUT_DIR] [--start-pdt START_PDT] url
 
 Download an HLS stream to a local directory.
 
@@ -22,19 +22,30 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -o OUTPUT_DIR, --output-dir OUTPUT_DIR
-                        Local directory to save the stream. Defaults to the
-                        current directory.
-
-
+                        Local directory to save the stream. Defaults to the current directory.
+  --start-pdt START_PDT
+                        Set the start Program Date Time in the HLS manifest.
 ```
 
 ## Examples
+
+### Basic Usage
 ```shell
-$ hls-dl.py -o stream http://example.com/video/master.m3u8
+$ python3 hls-dl.py \
+  --output-dir=my-stream \
+  http://example.com/video/master.m3u8
 ```
 
-The HLS video stream will be downloaded to the directory `stream` and available for playback with [ffmpeg](https://ffmpeg.org/) via:
+### Set the #EXT-X-PROGRAM-DATE-TIME
+```shell
+$ python3 hls-dl.py \
+  --start-pdt=2021-01-01T00:00:00Z \
+  --output-dir=my-stream \
+  http://example.com/video/master.m3u8
+```
+
+The HLS video stream will be downloaded to the directory `my-stream` and available for playback with [ffmpeg](https://ffmpeg.org/) via:
 
 ```shell
-$ ffplay stream/master.m3u8
+$ ffplay my-stream/master.m3u8
 ```
